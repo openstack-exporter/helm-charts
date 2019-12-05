@@ -1,0 +1,2 @@
+chart-repos:
+  - argo=https://openstack-exporter.github.io/helm-charts
