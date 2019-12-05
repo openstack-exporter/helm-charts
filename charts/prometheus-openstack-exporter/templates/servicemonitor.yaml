@@ -1,0 +1,22 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "openstack-exporter.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "openstack-exporter.labels" . | indent 4 }}
+spec:
+  endpoints:
+  - port: metrics
+    relabelings:
+    - action: replace
+      regex: (.*)
+      replacment: {{ .Values.cloud }}
+      targetLabel: instance
+  jobLabel: jobLabel
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+{{ include "openstack-exporter.labels" . | indent 6 }}

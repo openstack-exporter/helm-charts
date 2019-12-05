@@ -1,0 +1,37 @@
+---
+version: 2.1
+
+jobs:
+  lint:
+    docker:
+      - image: gcr.io/kubernetes-charts-ci/test-image:v3.0.1
+    steps:
+      - checkout
+      - run: ct lint --config .circleci/chart-testing.yaml --lint-conf .circleci/lintconf.yaml
+
+  publish:
+    docker:
+      - image: gcr.io/kubernetes-charts-ci/test-image:v3.0.1
+    steps:
+      - add_ssh_keys
+      - run: git config --global user.email "nobody@circleci.com"
+      - run: git config --global user.name "Circle CI Build"
+      - checkout
+      - run: helm init --client-only
+      - run: |
+          set -x
+          if [ "$CIRCLE_BRANCH" = "master" ]; then
+            export GIT_PUSH=true
+          else 
+            export GIT_PUSH=false
+          fi
+          sh ./scripts/publish.sh
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - lint
+      - publish:
+          requires:
+            - lint
