@@ -3,10 +3,19 @@ entries:
   openstack-exporter:
   - apiVersion: v1
     appVersion: v0.7.0
-    created: "2019-12-05T13:11:15.711266347-05:00"
+    created: "2019-12-05T13:25:53.774086476-05:00"
     digest: 57e26e32a31e4c79ddc22800796fb03cb41655a70d36a9432cd144f4f0137466
     name: openstack-exporter
     urls:
     - openstack-exporter-0.2.0.tgz
     version: 0.2.0
-generated: "2019-12-05T13:11:15.71089293-05:00"
+  prometheus-openstack-exporter:
+  - apiVersion: v1
+    appVersion: v0.7.0
+    created: "2019-12-05T13:25:53.77429193-05:00"
+    digest: 6e761065d2b0902dc8ddf8d07aa725ea0f8a54690daaccfc8581f08179b69fbe
+    name: prometheus-openstack-exporter
+    urls:
+    - prometheus-openstack-exporter-0.1.0.tgz
+    version: 0.1.0
+generated: "2019-12-05T13:25:53.773766982-05:00"
