@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  openstack-exporter:
+  - apiVersion: v1
+    appVersion: v0.7.0
+    created: "2019-12-05T13:11:15.711266347-05:00"
+    digest: 57e26e32a31e4c79ddc22800796fb03cb41655a70d36a9432cd144f4f0137466
+    name: openstack-exporter
+    urls:
+    - openstack-exporter-0.2.0.tgz
+    version: 0.2.0
+generated: "2019-12-05T13:11:15.71089293-05:00"
