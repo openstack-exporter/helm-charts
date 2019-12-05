@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ include "openstack-exporter.fullname" . }}
+  labels:
+{{- include "openstack-exporter.labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+{{- include "openstack-exporter.labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{- include "openstack-exporter.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: openstack-exporter
+        # NOTE(mnaser): We'll need to wait for v0.8.0 to be released
+        # image: quay.io/niedbalski/openstack-exporter-linux-amd64:{{ $.Chart.AppVersion }}
+        image: quay.io/niedbalski/openstack-exporter-linux-amd64@sha256:9930898f8c9199d2597ab1d6cc302201eedd84cb91121eb206cbb65734a21971
+        args:
+        - --endpoint-type
+        - {{ .Values.endpoint_type }}
+        - {{ .Values.cloud }}
+        volumeMounts:
+          - name: openstack-config
+            mountPath: /etc/openstack
+        ports:
+        - name: metrics
+          containerPort: 9180
+      volumes:
+      - name: openstack-config
+        hostPath:
+          path: /root/.config/openstack
+          type: Directory
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
