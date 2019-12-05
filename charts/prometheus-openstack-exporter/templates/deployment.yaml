@@ -35,6 +35,10 @@ spec:
         hostPath:
           path: /root/.config/openstack
           type: Directory
+    {{- with .Values.hostAliases }}
+      hostAliases:
+{{ toYaml . | indent 8 }}
+    {{- end }}
     {{- with .Values.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
