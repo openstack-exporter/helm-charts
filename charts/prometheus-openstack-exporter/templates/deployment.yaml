@@ -17,9 +17,7 @@ spec:
     spec:
       containers:
       - name: openstack-exporter
-        # NOTE(mnaser): We'll need to wait for v0.8.0 to be released
-        # image: quay.io/niedbalski/openstack-exporter-linux-amd64:{{ $.Chart.AppVersion }}
-        image: quay.io/niedbalski/openstack-exporter-linux-amd64@sha256:9930898f8c9199d2597ab1d6cc302201eedd84cb91121eb206cbb65734a21971
+        image: quay.io/niedbalski/openstack-exporter-linux-amd64:{{ $.Chart.AppVersion }}
         args:
         - --endpoint-type
         - {{ .Values.endpoint_type }}
