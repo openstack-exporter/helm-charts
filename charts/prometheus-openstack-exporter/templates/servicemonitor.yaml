@@ -12,7 +12,7 @@ spec:
     relabelings:
     - action: replace
       regex: (.*)
-      replacment: {{ .Values.cloud }}
+      replacement: {{ .Values.cloud }}
       targetLabel: instance
   jobLabel: jobLabel
   namespaceSelector:
