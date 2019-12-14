@@ -8,11 +8,13 @@ metadata:
 {{ include "openstack-exporter.labels" . | indent 4 }}
 spec:
   endpoints:
-  - port: metrics
+  - interval: {{ .Values.serviceMonitor.interval }}
+    scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+    port: metrics
     relabelings:
     - action: replace
       regex: (.*)
-      replacment: {{ .Values.cloud }}
+      replacement: {{ .Values.cloud }}
       targetLabel: instance
   jobLabel: jobLabel
   namespaceSelector:
