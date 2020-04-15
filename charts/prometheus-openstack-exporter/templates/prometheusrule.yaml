@@ -75,6 +75,17 @@ spec:
           has been disabled for 60 minutes.  This can affect network operations so it must be resolved
           as quickly as possible.
 
+    - alert: NeutronBindingFailedPorts
+      expr: |
+        openstack_neutron_port{binding_vif_type="binding_failed"} != 0
+      labels:
+        severity: critical
+      annotations:
+        summary: "[`{{`{{$labels.device_owner}}`}}`] `{{`{{$labels.mac_address}}`}}` binding failed"
+        description: >
+          The NIC `{{`{{$labels.mac_address}}`}}` of `{{`{{$labels.device_owner}}`}}`
+          has binding failed port now.
+
     - alert: NeutronNetworkOutOfIPs
       expr: |
         sum by (network_id) (openstack_neutron_network_ip_availabilities_used{project_id!=""}) / sum by (network_id) (openstack_neutron_network_ip_availabilities_total{project_id!=""}) * 100 > 80
