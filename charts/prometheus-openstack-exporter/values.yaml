@@ -4,7 +4,7 @@ cloud: default
 
 image:
   repository: quay.io/niedbalski/openstack-exporter-linux-amd64
-  tag: latest
+  tag: master
   pullPolicy: IfNotPresent
 
 serviceMonitor:
