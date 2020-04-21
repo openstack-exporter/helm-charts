@@ -23,6 +23,9 @@ spec:
         - --endpoint-type
         - {{ .Values.endpoint_type }}
         - {{ .Values.cloud }}
+        {{- with .Values.extraArgs }}
+        {{- . | toYaml | nindent 8 }}
+        {{- end }}
         volumeMounts:
           - name: openstack-config
             mountPath: /etc/openstack
