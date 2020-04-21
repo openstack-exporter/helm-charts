@@ -2,6 +2,11 @@
 endpoint_type: internal
 cloud: default
 
+image:
+  repository: quay.io/niedbalski/openstack-exporter-linux-amd64
+  tag: latest
+  pullPolicy: IfNotPresent
+
 serviceMonitor:
   interval: 1m
   scrapeTimeout: 30s
