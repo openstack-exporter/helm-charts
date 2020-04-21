@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: openstack-exporter
-        image: quay.io/niedbalski/openstack-exporter-linux-amd64:{{ $.Chart.AppVersion }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
         - --endpoint-type
         - {{ .Values.endpoint_type }}
