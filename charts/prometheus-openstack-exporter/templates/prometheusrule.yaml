@@ -14,20 +14,32 @@ spec:
       expr: |
         openstack_cinder_agent_state != 1
       labels:
-        severity: critical
+        severity: P4
       annotations:
         summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` down"
         description: >
           The service `{{`{{$labels.exported_service}}`}}` running on `{{`{{$labels.hostname}}`}}`
-          is being reported as down.  This can affect volume operations so it must be resolved
-          as quickly as possible.
-  
+          is being reported as down.
+
+    - alert: CinderAgentDown
+      for: 5m
+      expr: |
+        openstack_cinder_agent_state != 1
+      labels:
+        severity: P3
+      annotations:
+        summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` down"
+        description: >
+          The service `{{`{{$labels.exported_service}}`}}` running on `{{`{{$labels.hostname}}`}}`
+          is being reported as down for 5 minutes.  This can affect volume operations so it must
+          be resolved as quickly as possible.
+
     - alert: CinderAgentDisabled
       for: 1h
       expr: |
         openstack_cinder_agent_state{adminState!="enabled"}
       labels:
-        severity: warning
+        severity: P5
       annotations:
         summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` disabled"
         description: >
@@ -40,7 +52,7 @@ spec:
       expr: |
         openstack_cinder_volume_status{status=~"error.*"}
       labels:
-        severity: warning
+        severity: P4
       annotations:
         summary: "[`{{`{{$labels.id}}`}}`] Volume in ERROR state"
         description: >
@@ -54,20 +66,32 @@ spec:
       expr: |
         openstack_neutron_agent_state != 1
       labels:
-        severity: critical
+        severity: P4
       annotations:
         summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` down"
         description: >
           The service `{{`{{$labels.exported_service}}`}}` running on `{{`{{$labels.hostname}}`}}`
-          is being reported as down.  This can affect network operations so it must be resolved
-          as quickly as possible.
+          is being reported as down.
+
+    - alert: NeutronAgentDown
+      for: 5m
+      expr: |
+        openstack_neutron_agent_state != 1
+      labels:
+        severity: P3
+      annotations:
+        summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` down"
+        description: >
+          The service `{{`{{$labels.exported_service}}`}}` running on `{{`{{$labels.hostname}}`}}`
+          is being reported as down for 5 minutes. This can affect network operations so it must
+          be resolved as quickly as possible.
 
     - alert: NeutronAgentDisabled
       for: 1h
       expr: |
         openstack_neutron_agent_state{adminState!="up"}
       labels:
-        severity: warning
+        severity: P5
       annotations:
         summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` disabled"
         description: >
@@ -79,7 +103,7 @@ spec:
       expr: |
         openstack_neutron_port{binding_vif_type="binding_failed"} != 0
       labels:
-        severity: critical
+        severity: P3
       annotations:
         summary: "[`{{`{{$labels.device_owner}}`}}`] `{{`{{$labels.mac_address}}`}}` binding failed"
         description: >
@@ -90,7 +114,7 @@ spec:
       expr: |
         sum by (network_id) (openstack_neutron_network_ip_availabilities_used{project_id!=""}) / sum by (network_id) (openstack_neutron_network_ip_availabilities_total{project_id!=""}) * 100 > 80
       labels:
-        severity: warning
+        severity: P4
       annotations:
         summary: "[`{{`{{$labels.network_name}}`}}`] `{{`{{$labels.subnet_name}}`}}` running out of IPs"
         description: >
@@ -105,7 +129,19 @@ spec:
       expr: |
         openstack_nova_agent_state != 1
       labels:
-        severity: critical
+        severity: P4
+      annotations:
+        summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` down"
+        description: >
+          The service `{{`{{$labels.exported_service}}`}}` running on `{{`{{$labels.hostname}}`}}`
+          is being reported as down.
+
+    - alert: NovaAgentDown
+      for: 5m
+      expr: |
+        openstack_nova_agent_state != 1
+      labels:
+        severity: P3
       annotations:
         summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` down"
         description: >
@@ -118,7 +154,7 @@ spec:
       expr: |
         openstack_nova_agent_state{adminState!="enabled"}
       labels:
-        severity: warning
+        severity: P5
       annotations:
         summary: "[`{{`{{$labels.hostname}}`}}`] `{{`{{$labels.exported_service}}`}}` disabled"
         description: >
@@ -131,7 +167,7 @@ spec:
       expr: |
         openstack_nova_server_status{status="ERROR"}
       labels:
-        severity: warning
+        severity: P4
       annotations:
         summary: "[`{{`{{$labels.id}}`}}`] Instance in ERROR state"
         description: >
@@ -142,7 +178,7 @@ spec:
       expr: |
         (sum(openstack_nova_memory_available_bytes-openstack_nova_memory_used_bytes) - max(openstack_nova_memory_used_bytes)) / sum(openstack_nova_memory_available_bytes-openstack_nova_memory_used_bytes) * 100 < 0.25
       labels:
-        severity: warning
+        severity: P4
       annotations:
         summary: "[nova] Failure risk"
         description: >
@@ -163,7 +199,7 @@ spec:
             (0 * openstack_nova_agent_state{exported_service="nova-compute",adminState="enabled"})
         ) * 100 > 75
       labels:
-        severity: warning
+        severity: P4
       annotations:
         summary: "[nova] Capacity risk"
         description: >
