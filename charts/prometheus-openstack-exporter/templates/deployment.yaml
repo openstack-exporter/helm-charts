@@ -34,9 +34,8 @@ spec:
           containerPort: 9180
       volumes:
       - name: openstack-config
-        hostPath:
-          path: /root/.config/openstack
-          type: Directory
+        secret:
+          secretName: openstack-config
     {{- with .Values.hostAliases }}
       hostAliases:
 {{ toYaml . | indent 8 }}
