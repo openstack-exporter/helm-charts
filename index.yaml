@@ -3,7 +3,15 @@ entries:
   prometheus-openstack-exporter:
   - apiVersion: v1
     appVersion: v1.2.0
-    created: 2020-11-05T18:25:41.850918568Z
+    created: 2020-11-13T15:33:49.289282638Z
+    digest: 3b14bc2f90c86c8ee9379d742e525f741ce6a485a77510a2967b3e5155dc7a79
+    name: prometheus-openstack-exporter
+    urls:
+    - prometheus-openstack-exporter-0.4.1.tgz
+    version: 0.4.1
+  - apiVersion: v1
+    appVersion: v1.2.0
+    created: 2020-11-13T15:33:49.28898377Z
     digest: 950a8ecfde3ce967a28a71c73fc87ba51c54045b89ce4c8d655981bcf2844761
     name: prometheus-openstack-exporter
     urls:
@@ -11,7 +19,7 @@ entries:
     version: 0.4.0
   - apiVersion: v1
     appVersion: v1.0.0
-    created: 2020-11-05T18:25:41.850687025Z
+    created: 2020-11-13T15:33:49.288690876Z
     digest: 7371d78538ef713f25bf5e14f8748449c607c2d62b91ebbad1e851e71c4fc45a
     name: prometheus-openstack-exporter
     urls:
@@ -19,7 +27,7 @@ entries:
     version: 0.3.5
   - apiVersion: v1
     appVersion: v1.0.0
-    created: 2020-11-05T18:25:41.85043475Z
+    created: 2020-11-13T15:33:49.288449216Z
     digest: 8598852d51e306aa421468ca5f9b24cb6bdeed2a57b06c009e2f7f7e54ae42b6
     name: prometheus-openstack-exporter
     urls:
@@ -27,7 +35,7 @@ entries:
     version: 0.3.4
   - apiVersion: v1
     appVersion: v0.8.0
-    created: 2020-11-05T18:25:41.850217006Z
+    created: 2020-11-13T15:33:49.288150772Z
     digest: 2bc68f3e1e07aa6d863129a7616e1ab4e9f7f46b7fb6f7a3aacfdd759a400e8a
     name: prometheus-openstack-exporter
     urls:
@@ -35,7 +43,7 @@ entries:
     version: 0.3.3
   - apiVersion: v1
     appVersion: v0.8.0
-    created: 2020-11-05T18:25:41.850000887Z
+    created: 2020-11-13T15:33:49.287912896Z
     digest: 279e539377045cf137fb62bff44df3f76c2ff345a82478f252cf33b150a82ed6
     name: prometheus-openstack-exporter
     urls:
@@ -43,7 +51,7 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: v0.7.0
-    created: 2020-11-05T18:25:41.84978509Z
+    created: 2020-11-13T15:33:49.287671312Z
     digest: 7ac26ac19c57babc1fd09cf763d8b5b6f68938000801a27ecfc6072f8e1798c4
     name: prometheus-openstack-exporter
     urls:
@@ -51,10 +59,10 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: v0.7.0
-    created: 2020-11-05T18:25:41.8495581Z
+    created: 2020-11-13T15:33:49.287374073Z
     digest: 35baef3b21787927a71beacfee08af34d758b1dec51d95630cb5513475c1b506
     name: prometheus-openstack-exporter
     urls:
     - prometheus-openstack-exporter-0.1.0.tgz
     version: 0.1.0
-generated: 2020-11-05T18:25:41.849170586Z
+generated: 2020-11-13T15:33:49.286932703Z
