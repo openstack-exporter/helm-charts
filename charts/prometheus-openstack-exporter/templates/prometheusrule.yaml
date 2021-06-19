@@ -175,6 +175,7 @@ spec:
           be cleaned up or removed in order to provide a consistent customer experience.
 
     - alert: NovaFailureRisk
+      for: 6h
       expr: |
         (sum(openstack_nova_memory_available_bytes-openstack_nova_memory_used_bytes) - max(openstack_nova_memory_used_bytes)) / sum(openstack_nova_memory_available_bytes-openstack_nova_memory_used_bytes) * 100 < 0.25
       labels:
@@ -188,6 +189,7 @@ spec:
           deployment to prevent this.
 
     - alert: NovaCapacity
+      for: 6h
       expr: |
         sum (
             openstack_nova_memory_used_bytes
