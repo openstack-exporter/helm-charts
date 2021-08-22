@@ -1,16 +1,37 @@
 ---
 # Choose endpoint type (this will override the value of clouds.yaml)
 endpoint_type: internal
+# Ignored when multicloud.enabled: true
 cloud: default
 
 image:
   repository: quay.io/niedbalski/openstack-exporter-linux-amd64
-  tag: v1.2.0
+  tag: v1.4.0
   pullPolicy: Always
 
 serviceMonitor:
   interval: 1m
   scrapeTimeout: 30s
+
+multicloud:
+  # Enable multicloud (i.e. /probe?... targets)
+  # Doc: https://github.com/openstack-exporter/openstack-exporter#description
+  enabled: true
+  # Monitor the exporter's internal metrics (i.e. /metrics)
+  selfmonitor: true
+  # List of clouds to scrape, and the services to scrape from them
+  clouds:
+    - name: cloud1
+      services:
+        - volume
+    - name: cloud2
+      services:
+        - volume
+        - image
+        - identity
+        - compute
+        - network
+        - placement # NB this needs the openstack-exporter release > 1.4.0
 
 # Add extra args to the exporter.
 # Doc: https://github.com/openstack-exporter/openstack-exporter#command-line-options
@@ -37,3 +58,8 @@ clouds_yaml_config: |
             project_domain_name: 'Default'
             user_domain_name: 'Default'
             auth_url: 'http://your-url-here:5000/v3'
+# In case of multicloud.enabled
+#        cloud1:
+#         ...
+#        cloud2:
+#         ...
