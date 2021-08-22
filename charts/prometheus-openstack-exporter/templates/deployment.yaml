@@ -22,7 +22,11 @@ spec:
         args:
         - --endpoint-type
         - {{ .Values.endpoint_type }}
+{{- if .Values.multicloud.enabled }}
+        - --multi-cloud
+{{- else }}
         - {{ .Values.cloud }}
+{{- end }}
         {{- with .Values.extraArgs }}
         {{- . | toYaml | nindent 8 }}
         {{- end }}
