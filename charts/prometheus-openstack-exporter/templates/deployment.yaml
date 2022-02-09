@@ -7,6 +7,7 @@ metadata:
   labels:
 {{- include "openstack-exporter.labels" . | indent 4 }}
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
 {{- include "openstack-exporter.labels" . | indent 6 }}
