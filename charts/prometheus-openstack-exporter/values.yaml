@@ -3,6 +3,8 @@
 endpoint_type: internal
 cloud: default
 
+replicaCount: 1
+
 image:
   repository: quay.io/niedbalski/openstack-exporter-linux-amd64
   tag: v1.2.0
