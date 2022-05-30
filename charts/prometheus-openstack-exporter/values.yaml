@@ -4,6 +4,8 @@ endpoint_type: internal
 # Ignored when multicloud.enabled: true
 cloud: default
 
+replicaCount: 1
+
 image:
   repository: quay.io/niedbalski/openstack-exporter-linux-amd64
   tag: v1.4.0
