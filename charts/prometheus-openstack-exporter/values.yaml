@@ -21,6 +21,10 @@ serviceMonitor:
 #  - --disable-service.container-infra
 #  - --disable-service.object-store
 
+# Add extra environment variables
+# extraEnvs:
+#  "ENV_VAR": "value"
+
 # Add extra labels
 #commonLabels:
 #  prometheus.io/monitor: "true"
