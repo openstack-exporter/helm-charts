@@ -33,6 +33,11 @@ spec:
         ports:
         - name: metrics
           containerPort: 9180
+        env:
+        {{- range $name, $value := .Values.extraEnvs }}
+        - name: {{ quote $name }}
+          value: {{ quote $value }}
+        {{- end }}
       volumes:
       - name: openstack-config
         secret:
