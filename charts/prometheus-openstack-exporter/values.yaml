@@ -8,7 +8,7 @@ replicaCount: 1
 
 image:
   repository: quay.io/niedbalski/openstack-exporter-linux-amd64
-  tag: v1.4.0
+  tag: v1.6.0
   pullPolicy: Always
 
 serviceMonitor:
