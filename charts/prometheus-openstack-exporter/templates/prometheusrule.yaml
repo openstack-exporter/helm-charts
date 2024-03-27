@@ -112,7 +112,7 @@ spec:
 
     - alert: NeutronNetworkOutOfIPs
       expr: |
-        sum by (network_id) (openstack_neutron_network_ip_availabilities_used{project_id!=""}) / sum by (network_id) (openstack_neutron_network_ip_availabilities_total{project_id!=""}) * 100 > 80
+        sum by (network_id, network_name, subnet_name) (openstack_neutron_network_ip_availabilities_used{project_id!=""}) / sum by (network_id, network_name, subnet_name) (openstack_neutron_network_ip_availabilities_total{project_id!=""}) * 100 > 80
       labels:
         severity: P4
       annotations:
